@@ -106,7 +106,7 @@ class Chef
           Chef::Log.info("SQL Server Version: #{server_version.inspect}")
           db.execute('USE [master]').do
           @new_resource.sql_sys_roles.each do |sql_sys_role, role_action|
-            case role_action
+            case "#{role_action}"
             when 'ADD'
               if server_version < '11.00.0000.00'
                 alter_statement = "EXEC sp_addsrvrolemember '#{@new_resource.username}', '#{sql_sys_role}'"
